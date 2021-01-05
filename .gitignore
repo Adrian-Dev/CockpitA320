@@ -11,10 +11,13 @@
 /[Mm]emoryCaptures/
 /[Aa]ssets/_IgnoreAssets/
 /[Aa]ssets/Plugins/
+/[Aa]ssets/TextMesh Pro/
 
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !/[Aa]ssets/**/*.meta
 /[Aa]ssets/_IgnoreAssets.meta
+/[Aa]ssets/Plugins.meta
+/[Aa]ssets/TextMesh Pro.meta
 
 # Uncomment this line if you wish to ignore the asset store tools plugin
 # /[Aa]ssets/AssetStoreTools*
