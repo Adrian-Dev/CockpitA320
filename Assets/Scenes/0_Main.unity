@@ -2198,7 +2198,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e50e0fcf4ac1cad45960c786b4932284, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _audioTurbineIdle: {fileID: 8300000, guid: c138f52243420d54bbd40973178e8b53, type: 3}
   _audioTurbineContinuous: {fileID: 8300000, guid: 2373aa2d44f8c5d49ac06827b3b7bb3f,
     type: 3}
   _audioTurbineAccelerate: {fileID: 8300000, guid: ddd75031ad4b8644d8acb1b2cc2385cc,
@@ -2210,6 +2209,30 @@ MonoBehaviour:
   _audioTurbineAccelerateReverse: {fileID: 8300000, guid: ef30ab435be01be4b98013443d4ddc54,
     type: 3}
   _audioTurbineDecelerateReverse: {fileID: 8300000, guid: bd538d7f4c80fd24f82654d981a722bb,
+    type: 3}
+  _audioAccelerationFromIdleToClimb: {fileID: 8300000, guid: d3e0257cfdbc5e34199155bd4b9826e7,
+    type: 3}
+  _audioAccelerationClimbConstante: {fileID: 8300000, guid: 0d420651846aa7a4eb3fdb8832fea81e,
+    type: 3}
+  _audioDecelerationFromClimbToIdle: {fileID: 8300000, guid: fa847026e3d83c145a85063f99da064c,
+    type: 3}
+  _audioAccelerationFromClimbToMaxCont: {fileID: 8300000, guid: 9193a4ba7e5527b458d465948aec27eb,
+    type: 3}
+  _audioAccelerationMaxContConstante: {fileID: 8300000, guid: d8f82ab422b6ead488e3012d5b585fb5,
+    type: 3}
+  _audioDecelerationFromMaxContToClimb: {fileID: 8300000, guid: 0244211744e26ca4c91fb09fc7873479,
+    type: 3}
+  _audioAccelerationFromMaxContToMaxTO: {fileID: 8300000, guid: fcd5b001aff9b8840ae059c5874e1163,
+    type: 3}
+  _audioAccelerationMaxTOConstante: {fileID: 8300000, guid: 041e26be42511b046b449bff717cb86a,
+    type: 3}
+  _audioDecelerationFromMaxTOToMaxCont: {fileID: 8300000, guid: 1f8e0abeb6daafa45a18b01836e3dcbf,
+    type: 3}
+  _audioAccelerationFromIdleToMaxReverse: {fileID: 8300000, guid: ef30ab435be01be4b98013443d4ddc54,
+    type: 3}
+  _audioAccelerationMaxReverseConstante: {fileID: 8300000, guid: a5a63d60d958e6245b357ccbccdc2a1c,
+    type: 3}
+  _audioDecelerationFromMaxReverseToIdle: {fileID: 8300000, guid: bd538d7f4c80fd24f82654d981a722bb,
     type: 3}
 --- !u!114 &192479792
 MonoBehaviour:
@@ -2246,7 +2269,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: c138f52243420d54bbd40973178e8b53, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 2b08f22a803799c4289b6aad65c43656, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -12125,89 +12148,6 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!1 &1087207551
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1087207554}
-  - component: {fileID: 1087207553}
-  - component: {fileID: 1087207552}
-  m_Layer: 0
-  m_Name: Camera
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!81 &1087207552
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1087207551}
-  m_Enabled: 1
---- !u!20 &1087207553
-Camera:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1087207551}
-  m_Enabled: 1
-  serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
-  m_projectionMatrixMode: 1
-  m_GateFitMode: 2
-  m_FOVAxisMode: 0
-  m_SensorSize: {x: 36, y: 24}
-  m_LensShift: {x: 0, y: 0}
-  m_FocalLength: 50
-  m_NormalizedViewPortRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
-  field of view: 60
-  orthographic: 0
-  orthographic size: 5
-  m_Depth: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 0
-  m_TargetEye: 3
-  m_HDR: 1
-  m_AllowMSAA: 1
-  m_AllowDynamicResolution: 0
-  m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
-  m_StereoConvergence: 10
-  m_StereoSeparation: 0.022
---- !u!4 &1087207554
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1087207551}
-  m_LocalRotation: {x: 0.13027316, y: -0.5611814, z: 0.08998752, w: 0.81240785}
-  m_LocalPosition: {x: 1.8490409, y: 0.52848476, z: -0.15586644}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1099969666
 GameObject:
   m_ObjectHideFlags: 0
