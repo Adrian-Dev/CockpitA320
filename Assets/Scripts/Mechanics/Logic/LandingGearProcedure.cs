@@ -4,181 +4,68 @@ using UnityEngine;
 
 public class LandingGearProcedure : MonoBehaviour
 {
-    [SerializeField] List<MeshRenderer> _trianglesMeshRenderers;
+    [SerializeField] LandingGearMechanic _landingGearMechanic;
+    [SerializeField] Canvas _toolTipCanvas;
+    [SerializeField] List<TMPro.TextMeshProUGUI> _stagesText;
 
-    [SerializeField] Material _triangleON;
-    [SerializeField] Material _triangleOFF;
-
-    [SerializeField] List<TMPro.TextMeshProUGUI> _lightsUNLK;
-
-    bool _shouldFail;
-    bool _alreadyWorking;
+    bool _procedureFinished;
 
     private void Awake()
     {
-        _shouldFail = true;
-        _alreadyWorking = false;
+        _procedureFinished = false;
+
+        for (int i = 0; i < _stagesText.Count; ++i)
+        {
+            _stagesText[i].enabled = false;
+        }
+
+        _toolTipCanvas.enabled = false;
     }
 
-    public void LandingProcedureGearUP()
+    private void Start()
     {
-        if (!_alreadyWorking)
+        ExecuteProcedure();
+    }
+
+    public void ExecuteProcedure()
+    {
+        if (!_procedureFinished)
         {
-            if (_shouldFail)
-            {
-                StartCoroutine(LandingProcedureGearUPFAILCoroutine());
-            }
-            else
-            {
-                StartCoroutine(LandingProcedureGearUPOKCoroutine());
-            }
+            _procedureFinished = true;
+            StartCoroutine(ExecuteProcedureCoroutine());
         }
     }
 
-    public void LandingProcedureGearDOWN()
+    IEnumerator ExecuteProcedureCoroutine()
     {
-        if (!_alreadyWorking)
-        {
-            {
-                StartCoroutine(LandingProcedureGearDOWNCoroutine());
-            }
-        }
-    }
+        _toolTipCanvas.enabled = true;
+        _stagesText[0].enabled = true;
+        yield return new WaitUntil(() => _landingGearMechanic.CurrentStage == LandingGearMechanic.Stage.UPFAIL);
+        _stagesText[0].enabled = false;
+        //_toolTipCanvas.enabled = false;
+        yield return new WaitForSeconds(2f);
 
-    IEnumerator LandingProcedureGearUPFAILCoroutine()
-    {
-        _alreadyWorking = true;
+        _toolTipCanvas.enabled = true;
+        _stagesText[1].enabled = true;
+        yield return new WaitUntil(() => _landingGearMechanic.CurrentStage == LandingGearMechanic.Stage.DOWN);
+        _stagesText[1].enabled = false;
+        //_toolTipCanvas.enabled = false;
+        yield return new WaitForSeconds(2f);
 
-        //Despues de subir la palanca
-        float _timeBefore;
+        _toolTipCanvas.enabled = true;
+        _stagesText[2].enabled = true;
+        yield return new WaitUntil(() => _landingGearMechanic.CurrentStage == LandingGearMechanic.Stage.UPOK);
+        _stagesText[2].enabled = false;
+        //_toolTipCanvas.enabled = false;
+        yield return new WaitForSeconds(2f);
 
-        _timeBefore = Time.unscaledTime;
-        yield return new WaitUntil(() => (Time.unscaledTime - _timeBefore) > 1f);
-        TurnOnUNLK();
+        _toolTipCanvas.enabled = true;
+        _stagesText[3].enabled = true;
+        yield return new WaitForSeconds(2f);
+        _stagesText[3].enabled = false;
+        //_toolTipCanvas.enabled = false;
 
-        _timeBefore = Time.unscaledTime;
-        yield return new WaitUntil(() => (Time.unscaledTime - _timeBefore) > 2f);
-        TurnOffTriangles();
-
-        _timeBefore = Time.unscaledTime;
-        yield return new WaitUntil(() => (Time.unscaledTime - _timeBefore) > 2f);
-        _lightsUNLK[0].color = new Color(_lightsUNLK[0].color.r, _lightsUNLK[0].color.g, _lightsUNLK[0].color.b, 0.13f);
-        _lightsUNLK[1].color = new Color(_lightsUNLK[1].color.r, _lightsUNLK[1].color.g, _lightsUNLK[1].color.b, 0.13f);
-
-        _shouldFail = false;
-        _alreadyWorking = false;
-
-        yield return null;
-    }
-
-
-    IEnumerator LandingProcedureGearUPOKCoroutine()
-    {
-        _alreadyWorking = true;
-
-        //Despues de subir la palanca
-        float _timeBefore;
-
-        _timeBefore = Time.unscaledTime;
-        yield return new WaitUntil(() => (Time.unscaledTime - _timeBefore) > 1f);
-        TurnOnUNLK();
-
-        _timeBefore = Time.unscaledTime;
-        yield return new WaitUntil(() => (Time.unscaledTime - _timeBefore) > 2f);
-        TurnOffTriangles();
-
-        _timeBefore = Time.unscaledTime;
-        yield return new WaitUntil(() => (Time.unscaledTime - _timeBefore) > 2f);
-        TurnOffUNLK();
-
-        _shouldFail = true;
-        _alreadyWorking = false;
-
-        yield return null;
-    }
-
-    IEnumerator LandingProcedureGearDOWNCoroutine()
-    {
-        _alreadyWorking = true;
-
-        //Despues de bajar la palanca    
-        float _timeBefore;
-
-        TurnOnUNLK();
-
-        _timeBefore = Time.unscaledTime;
-        yield return new WaitUntil(() => (Time.unscaledTime - _timeBefore) > 2f);
-        TurnOnTriangles();
-
-        _timeBefore = Time.unscaledTime;
-        yield return new WaitUntil(() => (Time.unscaledTime - _timeBefore) > 1f);
-        TurnOffUNLK();
-
-        _alreadyWorking = false;
-
-        yield return null;
-    }
-
-    void TurnOnTriangles()
-    {
-        for (int i = 0; i < _trianglesMeshRenderers.Count; ++i)
-        {
-            _trianglesMeshRenderers[i].material = _triangleON;
-        }
-    }
-
-    void TurnOffTriangles()
-    {
-        for (int i = 0; i < _trianglesMeshRenderers.Count; ++i)
-        {
-            _trianglesMeshRenderers[i].material = _triangleOFF;
-        }
-    }
-
-    void TurnOnUNLK()
-    {
-        for (int i = 0; i < _lightsUNLK.Count; ++i)
-        {
-            _lightsUNLK[i].color = new Color(_lightsUNLK[i].color.r, _lightsUNLK[i].color.g, _lightsUNLK[i].color.b, 1f);
-        }
-    }
-
-    void TurnOffUNLK()
-    {
-        for (int i = 0; i < _lightsUNLK.Count; ++i)
-        {
-            _lightsUNLK[i].color = new Color(_lightsUNLK[i].color.r, _lightsUNLK[i].color.g, _lightsUNLK[i].color.b, 0.13f);
-        }
-    }
-
-    public void ShowTriangles(float waitSeconds)
-    {
-        StartCoroutine(ShowTrianglesCoroutine(waitSeconds));
-    }
-
-    public void HideTriangles(float waitSeconds)
-    {
-        StartCoroutine(HideTrianglesCoroutine(waitSeconds));
-    }
-
-    IEnumerator ShowTrianglesCoroutine(float waitSeconds)
-    {
-        yield return new WaitForSeconds(waitSeconds);
-        for (int i = 0; i < _trianglesMeshRenderers.Count; ++i)
-        {
-            _trianglesMeshRenderers[i].enabled = true;
-        }
-
-        yield return null;
-    }
-
-    IEnumerator HideTrianglesCoroutine(float waitSeconds)
-    {
-        yield return new WaitForSeconds(waitSeconds);
-        for (int i = 0; i < _trianglesMeshRenderers.Count; ++i)
-        {
-            _trianglesMeshRenderers[i].enabled = false;
-        }
+        _toolTipCanvas.enabled = false;
 
         yield return null;
     }

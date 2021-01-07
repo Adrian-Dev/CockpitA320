@@ -7,13 +7,18 @@ public class RudderValue : MonoBehaviour
     [SerializeField] TMPro.TextMeshPro _textMeshOrientation;
     [SerializeField] TMPro.TextMeshPro _textMeshValue;
 
+    public float Value { get { return _currentValue; } }
+    public string Orientation { get { return _currentOrientation; } }
+
     float _currentValue;
+    string _currentOrientation;
     bool _isChanging;
     bool _isLeftIncreased;
     bool _isRightIncreased;
     private void Awake()
     {
         _currentValue = 0f;
+        _currentOrientation = "";
         _isChanging = false;
         _isLeftIncreased = false;
         _isRightIncreased = false;
@@ -48,7 +53,8 @@ public class RudderValue : MonoBehaviour
     IEnumerator IncreaseRudderLeftCoroutine()
     {
         _isChanging = true;
-        _textMeshOrientation.text = "L";
+        _currentOrientation = "L";
+        _textMeshOrientation.text = _currentOrientation;
 
         if (_currentValue < 20.0f)
         {
@@ -65,7 +71,8 @@ public class RudderValue : MonoBehaviour
     IEnumerator IncreaseRudderRightCoroutine()
     {
         _isChanging = true;
-        _textMeshOrientation.text = "R";
+        _currentOrientation = "R";
+        _textMeshOrientation.text = _currentOrientation;
 
         if (_currentValue < 20.0f)
         {
@@ -83,7 +90,9 @@ public class RudderValue : MonoBehaviour
     IEnumerator DecreaseRudderCoroutine()
     {
         _isChanging = true;
-        _textMeshOrientation.text = "";
+        _currentOrientation = "";
+        _textMeshOrientation.text = _currentOrientation;
+
         while (_currentValue > 0f)
         {
             _textMeshValue.text = _currentValue.ToString("0.0");
@@ -98,5 +107,14 @@ public class RudderValue : MonoBehaviour
         _isRightIncreased = false;
 
         yield return null;
+    }
+
+    public void ForceTrimValue(float value, string orientation)
+    {
+        _currentValue = value;
+        _currentOrientation = orientation;
+
+        _textMeshValue.text = _currentValue.ToString("0.0");
+        _textMeshOrientation.text = _currentOrientation;
     }
 }
