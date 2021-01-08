@@ -61,7 +61,7 @@ public class RudderValue : MonoBehaviour
             _currentValue = _currentValue + 0.1f;
             _textMeshValue.text = _currentValue.ToString("0.0");
 
-            yield return new WaitForSeconds(0.05f);
+            yield return new WaitForSeconds(0.04f);
         }
 
         _isChanging = false;
@@ -79,7 +79,7 @@ public class RudderValue : MonoBehaviour
             _currentValue = _currentValue + 0.1f;
             _textMeshValue.text = _currentValue.ToString("0.0");
 
-            yield return new WaitForSeconds(0.05f);
+            yield return new WaitForSeconds(0.04f);
         }
 
         _isChanging = false;
@@ -97,7 +97,7 @@ public class RudderValue : MonoBehaviour
         {
             _textMeshValue.text = _currentValue.ToString("0.0");
             _currentValue = _currentValue - 0.1f;
-            yield return new WaitForSeconds(0.05f);
+            yield return new WaitForSeconds(0.04f);
         }
         _currentValue = 0f;
         _textMeshValue.text = "";

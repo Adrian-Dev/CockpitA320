@@ -90,7 +90,7 @@ public class TrimRudderProcedure : MonoBehaviour
         _stagesText[0].enabled = false;
         _toolTipCanvas.enabled = false;
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
 
         _alreadyWorking = false;
         ExecAndGoNext();
@@ -120,7 +120,7 @@ public class TrimRudderProcedure : MonoBehaviour
         _stagesText[1].enabled = false;
         _toolTipCanvas.enabled = false;
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
 
         _alreadyWorking = false;
         ExecAndGoNext();
@@ -151,7 +151,10 @@ public class TrimRudderProcedure : MonoBehaviour
         _stagesText[2].enabled = false;
         _toolTipCanvas.enabled = false;
 
+        yield return new WaitForSeconds(1f);
+
         _alreadyWorking = false;
+        ExecAndGoNext();
 
         yield return null;
     }
