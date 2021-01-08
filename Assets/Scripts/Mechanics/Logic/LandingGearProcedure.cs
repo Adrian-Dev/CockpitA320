@@ -11,11 +11,11 @@ public class LandingGearProcedure : MonoBehaviour
     [SerializeField] Canvas _toolTipCanvas;
     [SerializeField] List<TMPro.TextMeshProUGUI> _stagesText;
 
-    bool _procedureFinished;
+    bool _procedureStarted;
 
     private void Awake()
     {
-        _procedureFinished = false;
+        _procedureStarted = false;
 
         for (int i = 0; i < _stagesText.Count; ++i)
         {
@@ -27,9 +27,9 @@ public class LandingGearProcedure : MonoBehaviour
 
     public void ExecuteProcedure()
     {
-        if (!_procedureFinished)
+        if (!_procedureStarted)
         {
-            _procedureFinished = true;
+            _procedureStarted = true;
             StartCoroutine(ExecuteProcedureCoroutine());
         }
     }
@@ -59,7 +59,7 @@ public class LandingGearProcedure : MonoBehaviour
 
         _toolTipCanvas.enabled = true;
         _stagesText[3].enabled = true;
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(4f);
         _stagesText[3].enabled = false;
         //_toolTipCanvas.enabled = false;
 
