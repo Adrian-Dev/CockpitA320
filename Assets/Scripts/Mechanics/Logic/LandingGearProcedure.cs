@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class LandingGearProcedure : MonoBehaviour
 {
+    [SerializeField] EnableDisableComponentAction _enableDisableComponentActionMainMenu;
+    [SerializeField] EnableDisableComponentAction _enableDisableComponentActionGraphicRaycast;
+
     [SerializeField] LandingGearMechanic _landingGearMechanic;
     [SerializeField] Canvas _toolTipCanvas;
     [SerializeField] List<TMPro.TextMeshProUGUI> _stagesText;
@@ -22,11 +25,6 @@ public class LandingGearProcedure : MonoBehaviour
         _toolTipCanvas.enabled = false;
     }
 
-    private void Start()
-    {
-        ExecuteProcedure();
-    }
-
     public void ExecuteProcedure()
     {
         if (!_procedureFinished)
@@ -38,7 +36,7 @@ public class LandingGearProcedure : MonoBehaviour
 
     IEnumerator ExecuteProcedureCoroutine()
     {
-        _toolTipCanvas.enabled = true;
+        //_toolTipCanvas.enabled = true;
         _stagesText[0].enabled = true;
         yield return new WaitUntil(() => _landingGearMechanic.CurrentStage == LandingGearMechanic.Stage.UPFAIL);
         _stagesText[0].enabled = false;
@@ -66,6 +64,9 @@ public class LandingGearProcedure : MonoBehaviour
         //_toolTipCanvas.enabled = false;
 
         _toolTipCanvas.enabled = false;
+
+        _enableDisableComponentActionGraphicRaycast.EnableComponent(1f);
+        _enableDisableComponentActionMainMenu.EnableComponent(1f);
 
         yield return null;
     }

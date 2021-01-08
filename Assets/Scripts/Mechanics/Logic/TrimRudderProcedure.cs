@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class TrimRudderProcedure : MonoBehaviour
 {
+    [SerializeField] EnableDisableComponentAction _enableDisableComponentActionMainMenu;
+    [SerializeField] EnableDisableComponentAction _enableDisableComponentActionGraphicRaycast;
+
     [SerializeField] RudderValue _rudderValue;
     [SerializeField] Canvas _toolTipCanvas;
     [SerializeField] List<TMPro.TextMeshProUGUI> _stagesText;
@@ -11,7 +14,7 @@ public class TrimRudderProcedure : MonoBehaviour
     bool _alreadyWorking;
     int _stage;
 
-    public enum Stage
+    public enum Stage // Todo update stage naming to use a more descriptive state
     {
 
     }
@@ -25,14 +28,11 @@ public class TrimRudderProcedure : MonoBehaviour
         {
             _stagesText[i].enabled = false;
         }
-
-        _toolTipCanvas.enabled = false;
     }
 
     private void Start()
     {
         _rudderValue.ForceTrimValue(11.2f, "R");
-        ExecAndGoNext(); // To be removed when adding menu option
     }
 
     public void ExecAndGoNext()
@@ -57,6 +57,11 @@ public class TrimRudderProcedure : MonoBehaviour
         {
             ResetRudder(5);
         }
+        else if(_stage == 5)
+        {
+            _enableDisableComponentActionGraphicRaycast.EnableComponent(1f);
+            _enableDisableComponentActionMainMenu.EnableComponent(1f);
+        }
     }
 
     void ResetRudder(int nextStage)
@@ -70,6 +75,11 @@ public class TrimRudderProcedure : MonoBehaviour
     IEnumerator ResetRudderCoroutine(int nextStage)
     {
         _alreadyWorking = true;
+
+        if(_stage == 0)
+        {
+            yield return new WaitForSeconds(0.5f);
+        }
 
         _toolTipCanvas.enabled = true;
         _stagesText[0].enabled = true;
