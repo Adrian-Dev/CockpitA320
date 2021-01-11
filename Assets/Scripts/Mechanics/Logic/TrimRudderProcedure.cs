@@ -30,15 +30,11 @@ public class TrimRudderProcedure : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-        _rudderValue.ForceTrimValue(11.2f, "R");
-    }
-
     public void ExecAndGoNext()
     {
         if(_stage == 0)
         {
+            _rudderValue.ForceTrimValue(11.2f, "R");
             ResetRudder(1);
         }
         else if (_stage == 1)

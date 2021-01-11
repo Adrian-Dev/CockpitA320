@@ -6,9 +6,11 @@ public class Interactable: MonoBehaviour, IInteractable
 {
     public bool Active { get { return _active; } }
     public bool Triggered { get { return _triggered; } }
+    public bool Grabbed { get { return _grabbed; } }
 
     bool _active;
     bool _triggered;
+    bool _grabbed;
 
     public virtual void Activate()
     {
@@ -24,6 +26,7 @@ public class Interactable: MonoBehaviour, IInteractable
     {
         Deactivate();
         _triggered = false;
+        _grabbed = false;
     }
 
     public virtual void TriggerAction()
@@ -31,6 +34,14 @@ public class Interactable: MonoBehaviour, IInteractable
         if (Active)
         {
             _triggered = true;
+        }
+    }
+
+    public virtual void GrabbedAction()
+    {
+        if (Active)
+        {
+            _grabbed = true;
         }
     }
 }

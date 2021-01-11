@@ -18,6 +18,17 @@ public class ControlsProcedure : MonoBehaviour
     [SerializeField] GameObject _lightNoSmockingOutline;
     [SerializeField] GameObject _lightSeatBeltsOutline;
     [SerializeField] GameObject _coverOutline;
+    [SerializeField] GameObject _maskButtonOutline;
+
+    [SerializeField] Canvas _stickLeftMenu;
+    [SerializeField] Canvas _throttleMenu;
+    [SerializeField] Canvas _brakeMenu;
+    [SerializeField] Canvas _FLAPSMenu;
+    [SerializeField] Canvas _knobMenu;
+    [SerializeField] Canvas _resetButtonMenu;
+    [SerializeField] Canvas _landingGearMenu;
+    [SerializeField] Canvas _lightSIGNSMenu;
+    [SerializeField] Canvas _coverMenu;
 
     [SerializeField] Interactable _stickLeftInteractable;
     [SerializeField] Interactable _throttleInteractable;
@@ -33,10 +44,12 @@ public class ControlsProcedure : MonoBehaviour
     [SerializeField] Interactable _maskButtonInteractable;
 
     bool _procedureStarted;
+    bool _waitForInteraction;
 
     private void Awake()
     {
         _procedureStarted = false;
+        _waitForInteraction = false;
 
         _stickLeftOutline.SetActive(false);
         _throttleOutline.SetActive(false);
@@ -49,6 +62,7 @@ public class ControlsProcedure : MonoBehaviour
         _lightNoSmockingOutline.SetActive(false);
         _lightSeatBeltsOutline.SetActive(false);
         _coverOutline.SetActive(false);
+        _maskButtonOutline.SetActive(false);
 
         _stickLeftInteractable.Restore();
         _throttleInteractable.Restore();
@@ -73,11 +87,69 @@ public class ControlsProcedure : MonoBehaviour
         }
     }
 
+
+    IEnumerator WaitForInteractionElementCoroutine(Interactable interactable, GameObject outlineObject, Canvas menuObject)
+    {
+        outlineObject.SetActive(true);
+        interactable.Activate();
+        menuObject.enabled = true;
+        yield return new WaitUntil(() => interactable.Grabbed);
+        outlineObject.SetActive(false);
+        yield return new WaitUntil(() => interactable.Triggered);
+        interactable.Deactivate();
+        _waitForInteraction = false;
+        yield return null;
+    }
+
     IEnumerator ExecuteProcedureCoroutine()
     {
-        _stickLeftOutline.SetActive(true);
-        _stickLeftInteractable.Activate();
-        yield return new WaitUntil(() => _stickLeftInteractable.Triggered);
+        _waitForInteraction = true;
+        StartCoroutine(WaitForInteractionElementCoroutine(_stickLeftInteractable, _stickLeftOutline, _stickLeftMenu));
+        yield return new WaitUntil(() => !_waitForInteraction);
+
+        _waitForInteraction = true;
+        StartCoroutine(WaitForInteractionElementCoroutine(_throttleInteractable, _throttleOutline, _throttleMenu));
+        yield return new WaitUntil(() => !_waitForInteraction);
+
+        _waitForInteraction = true;
+        StartCoroutine(WaitForInteractionElementCoroutine(_brakeInteractable, _brakeOutline, _brakeMenu));
+        yield return new WaitUntil(() => !_waitForInteraction);
+
+        _waitForInteraction = true;
+        StartCoroutine(WaitForInteractionElementCoroutine(_FLAPSInteractable, _FLAPSOutline, _FLAPSMenu));
+        yield return new WaitUntil(() => !_waitForInteraction);
+
+        _waitForInteraction = true;
+        StartCoroutine(WaitForInteractionElementCoroutine(_knobInteractable, _knobOutline, _knobMenu));
+        yield return new WaitUntil(() => !_waitForInteraction);
+
+        _waitForInteraction = true;
+        StartCoroutine(WaitForInteractionElementCoroutine(_resetButtonInteractable, _resetButtonOutline, _resetButtonMenu));
+        yield return new WaitUntil(() => !_waitForInteraction);
+
+        _waitForInteraction = true;
+        StartCoroutine(WaitForInteractionElementCoroutine(_landingGearInteractable, _landingGearOutline, _landingGearMenu));
+        yield return new WaitUntil(() => !_waitForInteraction);
+
+        _waitForInteraction = true;
+        StartCoroutine(WaitForInteractionElementCoroutine(_lightSeatBeltsInteractable, _lightSeatBeltsOutline, _lightSIGNSMenu));
+        yield return new WaitUntil(() => !_waitForInteraction);
+
+        _waitForInteraction = true;
+        StartCoroutine(WaitForInteractionElementCoroutine(_lightNoSmockingInteractable, _lightNoSmockingOutline, _lightSIGNSMenu));
+        yield return new WaitUntil(() => !_waitForInteraction);
+
+        _waitForInteraction = true;
+        StartCoroutine(WaitForInteractionElementCoroutine(_lightEmergencyInteractable, _lightEmergencyOutline, _lightSIGNSMenu));
+        yield return new WaitUntil(() => !_waitForInteraction);
+
+        _waitForInteraction = true;
+        StartCoroutine(WaitForInteractionElementCoroutine(_coverInteractable, _coverOutline, _coverMenu));
+        yield return new WaitUntil(() => !_waitForInteraction);
+
+        _waitForInteraction = true;
+        StartCoroutine(WaitForInteractionElementCoroutine(_maskButtonInteractable, _maskButtonOutline, _coverMenu));
+        yield return new WaitUntil(() => !_waitForInteraction);
 
 
         _enableDisableComponentActionGraphicRaycast.EnableComponent(1f);
