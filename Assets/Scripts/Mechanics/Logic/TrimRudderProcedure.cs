@@ -55,6 +55,10 @@ public class TrimRudderProcedure : MonoBehaviour
         }
         else if(_stage == 5)
         {
+            SetFinished(6);
+        }
+        else if (_stage == 6)
+        {
             _enableDisableComponentActionGraphicRaycast.EnableComponent(1f);
             _enableDisableComponentActionMainMenu.EnableComponent(1f);
         }
@@ -145,6 +149,36 @@ public class TrimRudderProcedure : MonoBehaviour
         _stage = nextStage;
 
         _stagesText[2].enabled = false;
+        _toolTipCanvas.enabled = false;
+
+        yield return new WaitForSeconds(1f);
+
+        _alreadyWorking = false;
+        ExecAndGoNext();
+
+        yield return null;
+    }
+
+    void SetFinished(int nextStage)
+    {
+        if (!_alreadyWorking)
+        {
+            StartCoroutine(SetFinishedCoroutine(nextStage));
+        }
+    }
+
+    IEnumerator SetFinishedCoroutine(int nextStage)
+    {
+        _alreadyWorking = true;
+
+        _toolTipCanvas.enabled = true;
+        _stagesText[3].enabled = true;
+
+        yield return new WaitForSeconds(3f);
+
+        _stage = nextStage;
+
+        _stagesText[3].enabled = false;
         _toolTipCanvas.enabled = false;
 
         yield return new WaitForSeconds(1f);
