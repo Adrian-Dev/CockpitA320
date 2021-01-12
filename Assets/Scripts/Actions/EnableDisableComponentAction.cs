@@ -71,4 +71,18 @@ public class EnableDisableComponentAction : MonoBehaviour
         }
         yield return null;
     }
+
+    public void ToggleValue()
+    {
+        System.Type type = _component.GetType();
+        var propertyEnabled = type.GetProperty("enabled");
+        if (propertyEnabled != null)
+        {            
+            propertyEnabled.SetValue(_component, !(bool) propertyEnabled.GetValue(_component));
+        }
+        else
+        {
+            Debug.Log("It seems '" + _component + "' does not have 'enabled' property.");
+        }
+    }
 }

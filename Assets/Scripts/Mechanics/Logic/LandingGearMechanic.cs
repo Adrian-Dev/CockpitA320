@@ -10,6 +10,9 @@ public class LandingGearMechanic : MonoBehaviour
     [SerializeField] List<MeshRenderer> _trianglesMeshRenderers;
     [SerializeField] List<TMPro.TextMeshProUGUI> _lightsUNLK;
 
+    public bool Active { get { return _active; } }
+
+    bool _active;
     bool _shouldFail;
     bool _alreadyWorking;
 
@@ -25,6 +28,7 @@ public class LandingGearMechanic : MonoBehaviour
 
     private void Awake()
     {
+        _active = false;
         _shouldFail = true;
         _alreadyWorking = false;
         _currentStage = Stage.DOWN;
@@ -32,7 +36,7 @@ public class LandingGearMechanic : MonoBehaviour
 
     public void LandingProcedureGearUP()
     {
-        if (!_alreadyWorking)
+        if (!_alreadyWorking && _active)
         {
             if (_shouldFail)
             {
@@ -47,7 +51,7 @@ public class LandingGearMechanic : MonoBehaviour
 
     public void LandingProcedureGearDOWN()
     {
-        if (!_alreadyWorking)
+        if (!_alreadyWorking && _active)
         {
             {
                 StartCoroutine(LandingProcedureGearDOWNCoroutine());
@@ -170,12 +174,18 @@ public class LandingGearMechanic : MonoBehaviour
 
     public void ShowTriangles(float waitSeconds)
     {
-        StartCoroutine(ShowTrianglesCoroutine(waitSeconds));
+        if (_active)
+        {
+            StartCoroutine(ShowTrianglesCoroutine(waitSeconds));
+        }
     }
 
     public void HideTriangles(float waitSeconds)
     {
-        StartCoroutine(HideTrianglesCoroutine(waitSeconds));
+        if (_active)
+        {
+            StartCoroutine(HideTrianglesCoroutine(waitSeconds));
+        }
     }
 
     IEnumerator ShowTrianglesCoroutine(float waitSeconds)
