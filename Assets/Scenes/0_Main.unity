@@ -132,7 +132,7 @@ GameObject:
   m_Component:
   - component: {fileID: 364539}
   - component: {fileID: 364536}
-  - component: {fileID: 364538}
+  - component: {fileID: 364537}
   - component: {fileID: 364535}
   m_Layer: 5
   m_Name: Captain Panel
@@ -169,13 +169,13 @@ Canvas:
   m_PixelPerfect: 1
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
-  m_OverridePixelPerfect: 1
+  m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!114 &364538
+--- !u!114 &364537
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1920,7 +1920,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 161468219}
   m_LocalRotation: {x: 0.080882765, y: -0, z: -0, w: 0.99672365}
-  m_LocalPosition: {x: 0, y: 0, z: 16.9}
+  m_LocalPosition: {x: 0, y: 0, z: 18}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7949950936968372842}
@@ -1930,7 +1930,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 9.279, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0, y: -5.1}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &180007841
@@ -3443,12 +3443,12 @@ PrefabInstance:
     - target: {fileID: 8732370901171022052, guid: f45f6e355ddad734bb2d04c4eb7586d8,
         type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8732370901171022052, guid: f45f6e355ddad734bb2d04c4eb7586d8,
         type: 3}
       propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8732370901171022052, guid: f45f6e355ddad734bb2d04c4eb7586d8,
         type: 3}
@@ -3707,7 +3707,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 42, y: 107.6}
+  m_SizeDelta: {x: 92.7, y: 140.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &261924310
 GameObject:
@@ -5324,7 +5324,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &368803779
 Transform:
   m_ObjectHideFlags: 0
@@ -5664,7 +5664,7 @@ RectTransform:
   m_GameObject: {fileID: 421641089}
   m_LocalRotation: {x: -0.00000004656611, y: -0.000000067055204, z: 0.9343534, w: 0.35634786}
   m_LocalPosition: {x: 0, y: 0, z: 0.49412224}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.2979, y: 1.2979, z: 1.2979}
   m_Children: []
   m_Father: {fileID: 463922848}
   m_RootOrder: 0
@@ -5759,7 +5759,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: -0.3, y: 8}
-  m_SizeDelta: {x: 165.2, y: 10.52}
+  m_SizeDelta: {x: 217.1, y: 10.52}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &435321274
 MonoBehaviour:
@@ -6146,7 +6146,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -0.005001068, y: 0.40000153}
-  m_SizeDelta: {x: 146.7, y: 112.2}
+  m_SizeDelta: {x: 198.27, y: 144.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &463922849
 MonoBehaviour:
@@ -6245,7 +6245,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1343131966}
+      - m_Target: {fileID: 0}
         m_MethodName: set_enabled
         m_Mode: 6
         m_Arguments:
@@ -6798,12 +6798,12 @@ PrefabInstance:
     - target: {fileID: 8732370901171022052, guid: f45f6e355ddad734bb2d04c4eb7586d8,
         type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8732370901171022052, guid: f45f6e355ddad734bb2d04c4eb7586d8,
         type: 3}
       propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8732370901171022052, guid: f45f6e355ddad734bb2d04c4eb7586d8,
         type: 3}
@@ -7142,7 +7142,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: -58.1, y: 0.62991333}
-  m_SizeDelta: {x: 224.79999, y: 10.520004}
+  m_SizeDelta: {x: 308.1, y: 10.520004}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &530845950
 MonoBehaviour:
@@ -7888,12 +7888,12 @@ PrefabInstance:
     - target: {fileID: 8732370901171022052, guid: f45f6e355ddad734bb2d04c4eb7586d8,
         type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8732370901171022052, guid: f45f6e355ddad734bb2d04c4eb7586d8,
         type: 3}
       propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8732370901171022052, guid: f45f6e355ddad734bb2d04c4eb7586d8,
         type: 3}
@@ -8673,12 +8673,12 @@ PrefabInstance:
     - target: {fileID: 8732370901171022052, guid: f45f6e355ddad734bb2d04c4eb7586d8,
         type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8732370901171022052, guid: f45f6e355ddad734bb2d04c4eb7586d8,
         type: 3}
       propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8732370901171022052, guid: f45f6e355ddad734bb2d04c4eb7586d8,
         type: 3}
@@ -9925,12 +9925,12 @@ PrefabInstance:
     - target: {fileID: 8732370901171022052, guid: f45f6e355ddad734bb2d04c4eb7586d8,
         type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8732370901171022052, guid: f45f6e355ddad734bb2d04c4eb7586d8,
         type: 3}
       propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8732370901171022052, guid: f45f6e355ddad734bb2d04c4eb7586d8,
         type: 3}
@@ -10723,12 +10723,12 @@ PrefabInstance:
     - target: {fileID: 8732370901171022052, guid: f45f6e355ddad734bb2d04c4eb7586d8,
         type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8732370901171022052, guid: f45f6e355ddad734bb2d04c4eb7586d8,
         type: 3}
       propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8732370901171022052, guid: f45f6e355ddad734bb2d04c4eb7586d8,
         type: 3}
@@ -14105,12 +14105,12 @@ PrefabInstance:
     - target: {fileID: 8732370901171022052, guid: f45f6e355ddad734bb2d04c4eb7586d8,
         type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8732370901171022052, guid: f45f6e355ddad734bb2d04c4eb7586d8,
         type: 3}
       propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8732370901171022052, guid: f45f6e355ddad734bb2d04c4eb7586d8,
         type: 3}
@@ -14215,7 +14215,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
   m_AnchoredPosition: {x: 53, y: 0.62991333}
-  m_SizeDelta: {x: 224.79999, y: 10.520004}
+  m_SizeDelta: {x: 308.1, y: 10.520004}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &890768933
 MonoBehaviour:
@@ -15851,12 +15851,12 @@ PrefabInstance:
     - target: {fileID: 8732370901171022052, guid: f45f6e355ddad734bb2d04c4eb7586d8,
         type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8732370901171022052, guid: f45f6e355ddad734bb2d04c4eb7586d8,
         type: 3}
       propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8732370901171022052, guid: f45f6e355ddad734bb2d04c4eb7586d8,
         type: 3}
@@ -16402,12 +16402,12 @@ PrefabInstance:
     - target: {fileID: 8732370901171022052, guid: f45f6e355ddad734bb2d04c4eb7586d8,
         type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8732370901171022052, guid: f45f6e355ddad734bb2d04c4eb7586d8,
         type: 3}
       propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8732370901171022052, guid: f45f6e355ddad734bb2d04c4eb7586d8,
         type: 3}
@@ -17193,7 +17193,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
   m_AnchoredPosition: {x: 0.1, y: -1.0999832}
-  m_SizeDelta: {x: 165.2, y: 10.520004}
+  m_SizeDelta: {x: 217.1, y: 10.520004}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1094948535
 MonoBehaviour:
@@ -20681,11 +20681,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1343131964}
   - component: {fileID: 1343131967}
-  - component: {fileID: 1343131966}
   - component: {fileID: 1343131965}
   - component: {fileID: 1343131968}
   m_Layer: 5
-  m_Name: TabList
+  m_Name: PanelList
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20730,23 +20729,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _component: {fileID: 1343131967}
---- !u!114 &1343131966
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1343131963}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
-  m_BlockingMask:
-    serializedVersion: 2
-    m_Bits: 1815
 --- !u!223 &1343131967
 Canvas:
   m_ObjectHideFlags: 0
@@ -22181,12 +22163,12 @@ PrefabInstance:
     - target: {fileID: 8732370901171022052, guid: f45f6e355ddad734bb2d04c4eb7586d8,
         type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8732370901171022052, guid: f45f6e355ddad734bb2d04c4eb7586d8,
         type: 3}
       propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8732370901171022052, guid: f45f6e355ddad734bb2d04c4eb7586d8,
         type: 3}
@@ -22374,8 +22356,8 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1447972757}
-  m_LocalRotation: {x: 0.080882765, y: -0, z: -0, w: 0.9967237}
-  m_LocalPosition: {x: 0, y: 0, z: 45.737896}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 20.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 255178851}
@@ -22385,7 +22367,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 324, y: 101.95096}
+  m_AnchoredPosition: {x: 220.2, y: 125.1}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1447972759
@@ -27000,12 +26982,12 @@ PrefabInstance:
     - target: {fileID: 8732370901171022052, guid: f45f6e355ddad734bb2d04c4eb7586d8,
         type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8732370901171022052, guid: f45f6e355ddad734bb2d04c4eb7586d8,
         type: 3}
       propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8732370901171022052, guid: f45f6e355ddad734bb2d04c4eb7586d8,
         type: 3}
@@ -27601,12 +27583,12 @@ PrefabInstance:
     - target: {fileID: 8732370901171022052, guid: f45f6e355ddad734bb2d04c4eb7586d8,
         type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8732370901171022052, guid: f45f6e355ddad734bb2d04c4eb7586d8,
         type: 3}
       propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8732370901171022052, guid: f45f6e355ddad734bb2d04c4eb7586d8,
         type: 3}
@@ -28331,12 +28313,12 @@ PrefabInstance:
     - target: {fileID: 8732370901171022052, guid: f45f6e355ddad734bb2d04c4eb7586d8,
         type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8732370901171022052, guid: f45f6e355ddad734bb2d04c4eb7586d8,
         type: 3}
       propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8732370901171022052, guid: f45f6e355ddad734bb2d04c4eb7586d8,
         type: 3}
@@ -29959,7 +29941,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2070876001}
   - component: {fileID: 2070875998}
-  - component: {fileID: 2070876000}
+  - component: {fileID: 2070875999}
   - component: {fileID: 2070875997}
   m_Layer: 5
   m_Name: F/O Panel
@@ -29996,13 +29978,13 @@ Canvas:
   m_PixelPerfect: 1
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
-  m_OverridePixelPerfect: 1
+  m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!114 &2070876000
+--- !u!114 &2070875999
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -53799,7 +53781,7 @@ Canvas:
   m_PixelPerfect: 1
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
-  m_OverridePixelPerfect: 1
+  m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
