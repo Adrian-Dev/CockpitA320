@@ -36,7 +36,8 @@ public class LandingGearMechanic : MonoBehaviour
 
     public void LandingProcedureGearUP()
     {
-        if (!_alreadyWorking && _active)
+        // if (!_alreadyWorking && _active)
+        if (!_alreadyWorking)
         {
             if (_shouldFail)
             {
@@ -51,7 +52,8 @@ public class LandingGearMechanic : MonoBehaviour
 
     public void LandingProcedureGearDOWN()
     {
-        if (!_alreadyWorking && _active)
+        // if (!_alreadyWorking && _active)
+        if (!_alreadyWorking)
         {
             {
                 StartCoroutine(LandingProcedureGearDOWNCoroutine());
@@ -174,18 +176,18 @@ public class LandingGearMechanic : MonoBehaviour
 
     public void ShowTriangles(float waitSeconds)
     {
-        if (_active)
-        {
+       //if (_active)
+       // {
             StartCoroutine(ShowTrianglesCoroutine(waitSeconds));
-        }
+       // }
     }
 
     public void HideTriangles(float waitSeconds)
     {
-        if (_active)
-        {
+       // if (_active)
+       // {
             StartCoroutine(HideTrianglesCoroutine(waitSeconds));
-        }
+       // }
     }
 
     IEnumerator ShowTrianglesCoroutine(float waitSeconds)
