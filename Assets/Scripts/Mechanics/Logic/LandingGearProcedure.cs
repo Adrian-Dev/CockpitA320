@@ -57,6 +57,11 @@ public class LandingGearProcedure : MonoBehaviour
     {
         _procedureActive = true;
 
+        _landingGearScreen.TurnOffUNLK();
+        _landingGearScreenZoomedIN.TurnOffUNLK();
+        _landingGearScreen.TurnOnTriangles();
+        _landingGearScreenZoomedIN.TurnOnTriangles();
+
         //_toolTipCanvas.enabled = true;
         _stagesText[0].enabled = true;
         yield return new WaitUntil(() => CurrentStage == Stage.UPFAIL);
@@ -75,6 +80,9 @@ public class LandingGearProcedure : MonoBehaviour
         _stagesText[2].enabled = true;
         yield return new WaitUntil(() => CurrentStage == Stage.UPOK);
         _stagesText[2].enabled = false;
+
+        _procedureActive = false;
+
         //_toolTipCanvas.enabled = false;
         yield return new WaitForSeconds(2f);
 
@@ -89,38 +97,37 @@ public class LandingGearProcedure : MonoBehaviour
         _enableDisableComponentActionGraphicRaycast.EnableComponent(1f);
         _enableDisableComponentActionMainMenu.EnableComponent(1f);
 
-        _procedureActive = false;
 
         yield return null;
     }
 
 
-    public void LandingProcedureGearUP()
+    public void LandingGearProcedureUP()
     {
         if (!_alreadyWorking && _procedureActive)
         {
             if (_shouldFail)
             {
-                StartCoroutine(LandingProcedureGearUPFAILCoroutine());
+                StartCoroutine(LandingGearProcedureUPFAILCoroutine());
             }
             else
             {
-                StartCoroutine(LandingProcedureGearUPOKCoroutine());
+                StartCoroutine(LandingGearProcedureUPOKCoroutine());
             }
         }
     }
 
-    public void LandingProcedureGearDOWN()
+    public void LandingGearProcedureDOWN()
     {
         if (!_alreadyWorking && _procedureActive)
         {
             {
-                StartCoroutine(LandingProcedureGearDOWNCoroutine());
+                StartCoroutine(LandingGearProcedureDOWNCoroutine());
             }
         }
     }
 
-    IEnumerator LandingProcedureGearUPFAILCoroutine()
+    IEnumerator LandingGearProcedureUPFAILCoroutine()
     {
         _alreadyWorking = true;
 
@@ -153,7 +160,7 @@ public class LandingGearProcedure : MonoBehaviour
         yield return null;
     }
 
-    IEnumerator LandingProcedureGearUPOKCoroutine()
+    IEnumerator LandingGearProcedureUPOKCoroutine()
     {
         _alreadyWorking = true;
 
@@ -184,7 +191,7 @@ public class LandingGearProcedure : MonoBehaviour
         yield return null;
     }
 
-    IEnumerator LandingProcedureGearDOWNCoroutine()
+    IEnumerator LandingGearProcedureDOWNCoroutine()
     {
         _alreadyWorking = true;
 
@@ -209,5 +216,22 @@ public class LandingGearProcedure : MonoBehaviour
         _alreadyWorking = false;
 
         yield return null;
+    }
+
+    public void ShowHideScreenZoomedIN(bool value)
+    {
+        if (_procedureActive)
+        {
+            if (value)
+            {
+                _landingGearScreenZoomedIN.GetComponent<EnableDisableComponentAction>().EnableComponent(0f);
+                _landingGearScreenZoomedIN.ShowTriangles(0f);
+            }
+            else
+            {
+                _landingGearScreenZoomedIN.GetComponent<EnableDisableComponentAction>().DisableComponent(6.5f);
+                _landingGearScreenZoomedIN.HideTriangles(6.5f);
+            }
+        }
     }
 }
