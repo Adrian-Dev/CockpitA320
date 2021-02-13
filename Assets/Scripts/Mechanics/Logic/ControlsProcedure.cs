@@ -43,12 +43,17 @@ public class ControlsProcedure : MonoBehaviour
     [SerializeField] Interactable _coverInteractable;
     [SerializeField] Interactable _maskButtonInteractable;
 
-    bool _procedureStarted;
+    bool _procedureActive;
     bool _waitForInteraction;
 
     private void Awake()
     {
-        _procedureStarted = false;
+        InitInteractables();
+    }
+
+    void InitInteractables()
+    {
+        _procedureActive = false;
         _waitForInteraction = false;
 
         _stickLeftOutline.SetActive(false);
@@ -80,9 +85,9 @@ public class ControlsProcedure : MonoBehaviour
 
     public void ExecuteProcedure()
     {
-        if (!_procedureStarted)
+        if (!_procedureActive)
         {
-            _procedureStarted = true;
+            InitInteractables();
             StartCoroutine(ExecuteProcedureCoroutine());
         }
     }
@@ -103,6 +108,8 @@ public class ControlsProcedure : MonoBehaviour
 
     IEnumerator ExecuteProcedureCoroutine()
     {
+        _procedureActive = true;
+
         _waitForInteraction = true;
         StartCoroutine(WaitForInteractionElementCoroutine(_stickLeftInteractable, _stickLeftOutline, _stickLeftMenu));
         yield return new WaitUntil(() => !_waitForInteraction);
@@ -154,6 +161,10 @@ public class ControlsProcedure : MonoBehaviour
 
         _enableDisableComponentActionGraphicRaycast.EnableComponent(1f);
         _enableDisableComponentActionMainMenu.EnableComponent(1f);
+
+        yield return new WaitForSeconds(1f);
+
+        _procedureActive = false;
 
         yield return null;
     }
