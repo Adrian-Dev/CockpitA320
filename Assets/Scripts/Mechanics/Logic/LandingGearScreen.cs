@@ -54,11 +54,27 @@ public class LandingGearScreen : MonoBehaviour
         _lightsUNLK[index].color = new Color(_lightsUNLK[index].color.r, _lightsUNLK[index].color.g, _lightsUNLK[index].color.b, 0.13f);
     }
 
+    public void ShowTriangles()
+    {
+        for (int i = 0; i < _trianglesMeshRenderers.Count; ++i)
+        {
+            _trianglesMeshRenderers[i].enabled = true;
+        }
+    }
+
     public void ShowTriangles(float waitSeconds)
     {
         if (!_alreadyWorking)
         {
             StartCoroutine(ShowTrianglesCoroutine(waitSeconds));
+        }
+    }
+
+    public void HideTriangles()
+    {
+        for (int i = 0; i < _trianglesMeshRenderers.Count; ++i)
+        {
+            _trianglesMeshRenderers[i].enabled = false;
         }
     }
 

@@ -8,7 +8,7 @@ public class RudderValue : MonoBehaviour
     [SerializeField] TMPro.TextMeshPro _textMeshValue;
 
     public float Value { get { return _currentValue; } }
-    public string Orientation { get { return _currentOrientation; } }
+    public string Orientation { get { return _currentOrientation; } } //TODO update Orientation to "enum" instead of "string"
 
     float _currentValue;
     string _currentOrientation;
@@ -116,5 +116,18 @@ public class RudderValue : MonoBehaviour
 
         _textMeshValue.text = _currentValue.ToString("0.0");
         _textMeshOrientation.text = _currentOrientation;
+
+        _isChanging = false;
+
+        if (orientation.Equals("L"))
+        {
+            _isLeftIncreased = true;
+            _isRightIncreased = false;
+        }
+        else if (orientation.Equals("R"))
+        {
+            _isRightIncreased = true;
+            _isLeftIncreased = false;
+        }
     }
 }

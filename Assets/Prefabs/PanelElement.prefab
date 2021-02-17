@@ -52,6 +52,7 @@ GameObject:
   - component: {fileID: 2356970353694338598}
   - component: {fileID: 2356970353694338601}
   - component: {fileID: 8732370901171022052}
+  - component: {fileID: 5603157574636106539}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -202,6 +203,34 @@ MonoBehaviour:
             m_StringArgument: UP
             m_BoolArgument: 0
           m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 5603157574636106539}
+          m_MethodName: SimulatePointerUp
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: UP
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &5603157574636106539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2356970353694338602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8de1fbdbe5cca54d8820e1c60cb1e15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _button: {fileID: 2356970353694338601}
 --- !u!1 &2356970354203062267
 GameObject:
   m_ObjectHideFlags: 0

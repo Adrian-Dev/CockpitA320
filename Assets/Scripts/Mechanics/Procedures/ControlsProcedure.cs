@@ -48,10 +48,10 @@ public class ControlsProcedure : MonoBehaviour
 
     private void Awake()
     {
-        InitInteractables();
+        Initialize();
     }
 
-    void InitInteractables()
+    void Initialize()
     {
         _procedureActive = false;
         _waitForInteraction = false;
@@ -68,6 +68,17 @@ public class ControlsProcedure : MonoBehaviour
         _lightSeatBeltsOutline.SetActive(false);
         _coverOutline.SetActive(false);
         _maskButtonOutline.SetActive(false);
+
+        // TODO move canvas initialization to AppController script
+        _stickLeftMenu.enabled = false;
+        _throttleMenu.enabled = false;
+        _brakeMenu.enabled = false;
+        _FLAPSMenu.enabled = false;
+        _knobMenu.enabled = false;
+        _resetButtonMenu.enabled = false;
+        _landingGearMenu.enabled = false;
+        _lightSIGNSMenu.enabled = false;
+        _coverMenu.enabled = false;
 
         _stickLeftInteractable.Restore();
         _throttleInteractable.Restore();
@@ -87,11 +98,18 @@ public class ControlsProcedure : MonoBehaviour
     {
         if (!_procedureActive)
         {
-            InitInteractables();
+            Initialize();
             StartCoroutine(ExecuteProcedureCoroutine());
         }
     }
 
+    public void StopProcedure()
+    {
+        StopAllCoroutines();
+        Initialize();
+        _enableDisableComponentActionGraphicRaycast.EnableComponent(0f);
+        _enableDisableComponentActionMainMenu.EnableComponent(0f);
+    }
 
     IEnumerator WaitForInteractionElementCoroutine(Interactable interactable, GameObject outlineObject, Canvas menuObject)
     {

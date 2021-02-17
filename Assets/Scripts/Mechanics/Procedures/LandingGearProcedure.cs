@@ -13,8 +13,6 @@ public class LandingGearProcedure : MonoBehaviour
     [SerializeField] Canvas _toolTipCanvas;
     [SerializeField] List<TMPro.TextMeshProUGUI> _stagesText;
 
-    public bool ProcedureActive { get { return _procedureActive; } }
-
     bool _procedureActive;
     bool _shouldFail;
     bool _alreadyWorking;
@@ -31,6 +29,11 @@ public class LandingGearProcedure : MonoBehaviour
 
     private void Awake()
     {
+        Initialize();
+    }
+
+    private void Initialize()
+    {
         _alreadyWorking = false;
         _procedureActive = false;
 
@@ -43,64 +46,27 @@ public class LandingGearProcedure : MonoBehaviour
         }
 
         _toolTipCanvas.enabled = false;
+
+        _landingGearScreenZoomedIN.GetComponent<EnableDisableComponentAction>().DisableComponent(0f);
+        _landingGearScreenZoomedIN.HideTriangles();
     }
 
     public void ExecuteProcedure()
     {
         if (!_procedureActive)
         {
+            Initialize();
             StartCoroutine(ExecuteProcedureCoroutine());
         }
     }
 
-    IEnumerator ExecuteProcedureCoroutine()
+    public void StopProcedure()
     {
-        _procedureActive = true;
-
-        _landingGearScreen.TurnOffUNLK();
-        _landingGearScreenZoomedIN.TurnOffUNLK();
-        _landingGearScreen.TurnOnTriangles();
-        _landingGearScreenZoomedIN.TurnOnTriangles();
-
-        //_toolTipCanvas.enabled = true;
-        _stagesText[0].enabled = true;
-        yield return new WaitUntil(() => CurrentStage == Stage.UPFAIL);
-        _stagesText[0].enabled = false;
-        //_toolTipCanvas.enabled = false;
-        yield return new WaitForSeconds(2f);
-
-        _toolTipCanvas.enabled = true;
-        _stagesText[1].enabled = true;
-        yield return new WaitUntil(() => CurrentStage == Stage.DOWN);
-        _stagesText[1].enabled = false;
-        //_toolTipCanvas.enabled = false;
-        yield return new WaitForSeconds(2f);
-
-        _toolTipCanvas.enabled = true;
-        _stagesText[2].enabled = true;
-        yield return new WaitUntil(() => CurrentStage == Stage.UPOK);
-        _stagesText[2].enabled = false;
-
-        _procedureActive = false;
-
-        //_toolTipCanvas.enabled = false;
-        yield return new WaitForSeconds(2f);
-
-        _toolTipCanvas.enabled = true;
-        _stagesText[3].enabled = true;
-        yield return new WaitForSeconds(4f);
-        _stagesText[3].enabled = false;
-        //_toolTipCanvas.enabled = false;
-
-        _toolTipCanvas.enabled = false;
-
-        _enableDisableComponentActionGraphicRaycast.EnableComponent(1f);
-        _enableDisableComponentActionMainMenu.EnableComponent(1f);
-
-
-        yield return null;
+        StopAllCoroutines();
+        Initialize();
+        _enableDisableComponentActionGraphicRaycast.EnableComponent(0f);
+        _enableDisableComponentActionMainMenu.EnableComponent(0f);
     }
-
 
     public void LandingGearProcedureUP()
     {
@@ -121,17 +87,64 @@ public class LandingGearProcedure : MonoBehaviour
     {
         if (!_alreadyWorking && _procedureActive)
         {
-            {
-                StartCoroutine(LandingGearProcedureDOWNCoroutine());
-            }
+            StartCoroutine(LandingGearProcedureDOWNCoroutine());
         }
+    }
+
+    IEnumerator ExecuteProcedureCoroutine()
+    {
+        _procedureActive = true;
+
+        _landingGearScreen.TurnOffUNLK();
+        _landingGearScreenZoomedIN.TurnOffUNLK();
+        _landingGearScreen.TurnOnTriangles();
+        _landingGearScreenZoomedIN.TurnOnTriangles();
+
+        //_toolTipCanvas.enabled = true; // TODO refactor toolTips
+        _stagesText[0].enabled = true;
+        yield return new WaitUntil(() => CurrentStage == Stage.UPFAIL);
+        _stagesText[0].enabled = false;
+        //_toolTipCanvas.enabled = false;
+        yield return new WaitForSeconds(2f);
+
+        _toolTipCanvas.enabled = true;
+        _stagesText[1].enabled = true;
+        yield return new WaitUntil(() => CurrentStage == Stage.DOWN);
+        _stagesText[1].enabled = false;
+        //_toolTipCanvas.enabled = false;
+        yield return new WaitForSeconds(2f);
+
+        _toolTipCanvas.enabled = true;
+        _stagesText[2].enabled = true;
+        yield return new WaitUntil(() => CurrentStage == Stage.UPOK);
+        _stagesText[2].enabled = false;
+
+
+        //_toolTipCanvas.enabled = false;
+        yield return new WaitForSeconds(2f);
+
+        _toolTipCanvas.enabled = true;
+        _stagesText[3].enabled = true;
+        yield return new WaitForSeconds(4f);
+        _stagesText[3].enabled = false;
+        //_toolTipCanvas.enabled = false;
+
+        _toolTipCanvas.enabled = false;
+
+        _enableDisableComponentActionGraphicRaycast.EnableComponent(1f);
+        _enableDisableComponentActionMainMenu.EnableComponent(1f);
+
+        _procedureActive = false;
+
+
+        yield return null;
     }
 
     IEnumerator LandingGearProcedureUPFAILCoroutine()
     {
         _alreadyWorking = true;
 
-        //Despues de subir la palanca
+        //After placing the lever down    
         float _timeBefore;
 
         _timeBefore = Time.unscaledTime;
@@ -164,7 +177,7 @@ public class LandingGearProcedure : MonoBehaviour
     {
         _alreadyWorking = true;
 
-        //Despues de subir la palanca
+        //After placing the lever up  
         float _timeBefore;
 
         _timeBefore = Time.unscaledTime;
@@ -195,7 +208,7 @@ public class LandingGearProcedure : MonoBehaviour
     {
         _alreadyWorking = true;
 
-        //Despues de bajar la palanca    
+        //After placing the lever down    
         float _timeBefore;
 
         _landingGearScreen.TurnOnUNLK();
@@ -218,7 +231,7 @@ public class LandingGearProcedure : MonoBehaviour
         yield return null;
     }
 
-    public void ShowHideScreenZoomedIN(bool value)
+    public void ShowHideScreenZoomedIN(bool value) // Not best solution design. Refactor when possible
     {
         if (_procedureActive)
         {
