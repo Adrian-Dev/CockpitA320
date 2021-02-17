@@ -12,6 +12,9 @@ public class PanelsProcedure : MonoBehaviour
     [SerializeField] List<Canvas> _canvasFirstLevelList;
     [SerializeField] List<Canvas> _canvasSecondLevelList;
 
+    [SerializeField] List<GameObject> _hideableGameObjects;
+
+
     bool _procedureActive;
 
     private void Awake()
@@ -55,9 +58,15 @@ public class PanelsProcedure : MonoBehaviour
         {
             canvas.enabled = false;
         }
+        // TODO check if this is actually needed or not, or if should only be done in second level panels
         foreach (var raycaster in _panelListMenu.GetComponentsInChildren<UnityEngine.UI.GraphicRaycaster>())
         {
         //    raycaster.enabled = false;
+        }
+
+        foreach(var gObject in _hideableGameObjects)
+        {
+            gObject.SetActive(true);
         }
     }
 
