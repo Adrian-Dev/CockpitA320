@@ -7,11 +7,15 @@ public class AppController : MonoBehaviour
 {
     [SerializeField] BNG.InputBridge _inputBridge;
     [SerializeField] Canvas _menu;
-
     [SerializeField] PanelsProcedure _panelsProcedure;
     [SerializeField] ControlsProcedure _controlsProcedure;
     [SerializeField] TrimRudderProcedure _trimRudderProcedure;
     [SerializeField] LandingGearProcedure _landingGearProcedure;
+
+    private void Start()
+    {
+        ResetView();
+    }
 
     public void ShowHideMenu(bool value)
     {
@@ -28,6 +32,22 @@ public class AppController : MonoBehaviour
     public void RestartLevel()
     {
         SceneManager.LoadScene(0);
+    }
+
+    public void RestartView()
+    {        
+        //TODO Fade in-out
+        ResetView();
+    }
+
+    void ResetView()
+    {
+        List<UnityEngine.XR.XRInputSubsystem> subsystems = new List<UnityEngine.XR.XRInputSubsystem>();
+        SubsystemManager.GetInstances<UnityEngine.XR.XRInputSubsystem>(subsystems);
+        for (int i = 0; i < subsystems.Count; i++)
+        {
+            subsystems[i].TryRecenter();
+        }
     }
 
     public void Quit()
@@ -51,5 +71,11 @@ public class AppController : MonoBehaviour
             _trimRudderProcedure.StopProcedure();
             _landingGearProcedure.StopProcedure();
         }
+
+       // bool shouldResetView = _inputBridge.XButtonUp;
+       // if (shouldResetView)
+       // {
+       //     ResetView();
+       // }
     }
 }
