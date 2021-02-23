@@ -7,6 +7,8 @@ public class LandingGearProcedure : MonoBehaviour
     [SerializeField] EnableDisableComponentAction _enableDisableComponentActionMainMenu;
     [SerializeField] EnableDisableComponentAction _enableDisableComponentActionGraphicRaycast;
 
+    [SerializeField] BNG.Lever _lever;
+
     [SerializeField] LandingGearScreen _landingGearScreen;
     [SerializeField] LandingGearScreen _landingGearScreenZoomedIN;
 
@@ -17,6 +19,8 @@ public class LandingGearProcedure : MonoBehaviour
     bool _shouldFail;
     bool _alreadyWorking;
 
+    bool _shouldDisplayScreenZoomedIN;
+
     public enum Stage
     {
         DOWN,
@@ -24,7 +28,7 @@ public class LandingGearProcedure : MonoBehaviour
         UPOK
     }
 
-    public Stage CurrentStage { get { return _currentStage; } }
+   // public Stage CurrentStage { get { return _currentStage; } }
     Stage _currentStage;
 
     private void Awake()
@@ -36,9 +40,11 @@ public class LandingGearProcedure : MonoBehaviour
     {
         _alreadyWorking = false;
         _procedureActive = false;
+        _shouldDisplayScreenZoomedIN = false;
 
         _shouldFail = true;
         _currentStage = Stage.DOWN;
+
 
         for (int i = 0; i < _stagesText.Count; ++i)
         {
@@ -95,38 +101,54 @@ public class LandingGearProcedure : MonoBehaviour
     {
         _procedureActive = true;
 
+        if (_lever.LeverPercentage >= 2f) // If lever is upwards, then ask user to put it down before starting the procedure
+        {
+            _toolTipCanvas.enabled = true;
+            _stagesText[0].enabled = true;
+            yield return new WaitUntil(() => _lever.LeverPercentage <= 2f);
+
+            float _timeBefore = Time.unscaledTime;
+            yield return new WaitUntil(() => (Time.unscaledTime - _timeBefore) > 1.5f);
+
+            _stagesText[0].enabled = false;
+            //_toolTipCanvas.enabled = false;
+            yield return new WaitForSeconds(2f);
+        }
+
+        _shouldDisplayScreenZoomedIN = true;
+
         _landingGearScreen.TurnOffUNLK();
         _landingGearScreenZoomedIN.TurnOffUNLK();
         _landingGearScreen.TurnOnTriangles();
         _landingGearScreenZoomedIN.TurnOnTriangles();
 
         //_toolTipCanvas.enabled = true; // TODO refactor toolTips
-        _stagesText[0].enabled = true;
-        yield return new WaitUntil(() => CurrentStage == Stage.UPFAIL);
-        _stagesText[0].enabled = false;
-        //_toolTipCanvas.enabled = false;
-        yield return new WaitForSeconds(2f);
-
         _toolTipCanvas.enabled = true;
         _stagesText[1].enabled = true;
-        yield return new WaitUntil(() => CurrentStage == Stage.DOWN);
+        yield return new WaitUntil(() => _currentStage == Stage.UPFAIL);
         _stagesText[1].enabled = false;
         //_toolTipCanvas.enabled = false;
         yield return new WaitForSeconds(2f);
 
         _toolTipCanvas.enabled = true;
         _stagesText[2].enabled = true;
-        yield return new WaitUntil(() => CurrentStage == Stage.UPOK);
+        yield return new WaitUntil(() => _currentStage == Stage.DOWN);
         _stagesText[2].enabled = false;
-
-
         //_toolTipCanvas.enabled = false;
         yield return new WaitForSeconds(2f);
 
         _toolTipCanvas.enabled = true;
         _stagesText[3].enabled = true;
-        yield return new WaitForSeconds(4f);
+        yield return new WaitUntil(() => _currentStage == Stage.UPOK);
         _stagesText[3].enabled = false;
+
+        //_toolTipCanvas.enabled = false;
+        yield return new WaitForSeconds(2f);
+
+        _toolTipCanvas.enabled = true;
+        _stagesText[4].enabled = true;
+        yield return new WaitForSeconds(4f);
+        _stagesText[4].enabled = false;
         //_toolTipCanvas.enabled = false;
 
         _toolTipCanvas.enabled = false;
@@ -135,7 +157,7 @@ public class LandingGearProcedure : MonoBehaviour
         _enableDisableComponentActionMainMenu.EnableComponent(1f);
 
         _procedureActive = false;
-
+        _shouldDisplayScreenZoomedIN = false;
 
         yield return null;
     }
@@ -233,7 +255,7 @@ public class LandingGearProcedure : MonoBehaviour
 
     public void ShowHideScreenZoomedIN(bool value) // Not best solution design. Refactor when possible
     {
-        if (_procedureActive)
+        if (_procedureActive && _shouldDisplayScreenZoomedIN)
         {
             if (value)
             {
