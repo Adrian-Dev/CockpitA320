@@ -26,6 +26,6 @@ public class GlowMenuAction : MonoBehaviour
         {
             _images[i].enabled = false;
         }
-        _images[_anglePositions.TargetRow].enabled = true;
+        _images[_anglePositions.TargetIndex].enabled = true;
     }
 }

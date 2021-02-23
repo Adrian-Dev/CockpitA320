@@ -7,17 +7,17 @@ public class AnglePositions : MonoBehaviour
     [SerializeField] List<float> _innerTargetValues; //Excluding min and max from hinge and having values in increasing order
 
     public float TargetAngle { get { return _targetAngle; } }
-    public int TargetRow { get { return _targetRow; } }
+    public int TargetIndex { get { return _targetIndex; } }
 
     private float _targetAngle;
-    private int _targetRow;
+    private int _targetIndex;
 
     private HingeJoint _hingeJoint;
 
     void Awake()
     {
         _targetAngle = 0f;
-        _targetRow = 0;
+        _targetIndex = 0;
 
         _hingeJoint = GetComponent<HingeJoint>();
     }
@@ -41,12 +41,12 @@ public class AnglePositions : MonoBehaviour
                 if(angle > halfValue)
                 {
                     _targetAngle = _innerTargetValues[i];
-                    _targetRow = 1 ;
+                    _targetIndex = 1 ;
                 }
                 else
                 {
                     _targetAngle = _hingeJoint.limits.min;
-                    _targetRow = 0;
+                    _targetIndex = 0;
                 }
             }
             else if (i == _innerTargetValues.Count)
@@ -56,13 +56,13 @@ public class AnglePositions : MonoBehaviour
                 if (angle > halfValue)
                 {
                     _targetAngle = _hingeJoint.limits.max;
-                    _targetRow = _innerTargetValues.Count + 1;
+                    _targetIndex = _innerTargetValues.Count + 1;
 
                 }
                 else
                 {
                     _targetAngle = _innerTargetValues[i - 1];
-                    _targetRow = _innerTargetValues.Count;
+                    _targetIndex = _innerTargetValues.Count;
                 }
             }
             else
@@ -72,13 +72,13 @@ public class AnglePositions : MonoBehaviour
                 if (angle > halfValue)
                 {
                     _targetAngle = _innerTargetValues[i];
-                    _targetRow = i + 1;
+                    _targetIndex = i + 1;
 
                 }
                 else
                 {
                     _targetAngle = _innerTargetValues[i - 1];
-                    _targetRow = i;
+                    _targetIndex = i;
                 }
             }
         }
@@ -89,13 +89,13 @@ public class AnglePositions : MonoBehaviour
             if (angle > halfValue)
             {
                 _targetAngle = _hingeJoint.limits.max;
-                _targetRow = 1;
+                _targetIndex = 1;
 
             }
             else
             {
                 _targetAngle = _hingeJoint.limits.min;
-                _targetRow = 0;
+                _targetIndex = 0;
             }
         }
 

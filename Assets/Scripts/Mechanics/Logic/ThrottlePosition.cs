@@ -34,12 +34,12 @@ public class ThrottlePosition : MonoBehaviour
 
     public void UpdatePosition()
     {
-        _currentPosition = (Position)_anglePositions.TargetRow;
+        _currentPosition = (Position)_anglePositions.TargetIndex;
     }
 
     public void SavePosition()
     {
-        _previousPosition = (Position)_anglePositions.TargetRow;
+        _previousPosition = (Position)_anglePositions.TargetIndex;
     }
 
     public void WaitCanBeGrabbed(float value)
